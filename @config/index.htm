@@ -28,14 +28,14 @@
   <div class="c-app" v-cloak>
     <h3 class="h5 mb-4 text-decoration-underline">Available Packages:</h3>
     <ul class="nav nav-pills mb-5 border-bottom pb-5" id="tabs" role="tablist">
-      <li class="nav-item" role="presentation" v-for="(value, key, index) in {'vendor-hybrid': 'Vendor Manifest — Hybrid', 'express-hybrid': 'Express Package — Hybrid'/*, 'kosmos-justwatch': 'Kosmos Package — JustWatch'*/}">
+      <li class="nav-item" role="presentation" v-for="(value, key, index) in {'vendor': 'Syncler v2 — Vendor Manifest', 'express': 'Syncler v1 — Express Package'/*, 'kosmos-justwatch': 'Kosmos Package — JustWatch'*/}">
         <button :class="`nav-link ${index == 0 ? 'active' : ''}`" :id="`${key}-tab`" data-bs-toggle="pill" :data-bs-target="`#${key}`" type="button" role="tab" :aria-controls="key" aria-selected="true">{{ value }}</button>
       </li>
     </ul>
     <div class="c-tab-container tab-content" id="tab-content">
-      <div :class="`c-tab-pane tab-pane fade ${index == 0 ? 'show active' : ''}`" :id="`${key}-hybrid`" role="tabpanel" :aria-labelledby="`${key}-hybrid-tab`" tabindex="0" v-for="(key, index) in ['vendor', 'express']">
+      <div :class="`c-tab-pane tab-pane fade ${index == 0 ? 'show active' : ''}`" :id="`${key}`" role="tabpanel" :aria-labelledby="`${key}-tab`" tabindex="0" v-for="(key, index) in ['vendor', 'express']">
         <div class="mb-5 border-bottom pb-5">
-          <h2 class="mb-4">{{ key == 'vendor' ? 'Vendor Manifest' : 'Express Package' }} — Hybrid</h2>
+          <h2 class="mb-4">{{ key == 'vendor' ? 'Syncler v2 — Vendor Manifest' : 'Syncler v1 — Express Package' }}</h2>
           <p>
             This intelligently combines all known {{ key == 'express' ? 'Express' : '' }} packages for Syncler on-the-fly into a single hybrid package, de-duping any duplicate providers in the process.
           </p>

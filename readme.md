@@ -4,11 +4,11 @@ The following Syncler v2 vendor manifests and Syncler v1 packages are available 
 
 ## Syncler v2:
 
-* [Vendor Manifest — Hybrid](https://jakedup.github.io/Syncler-Packages/@config/?id=vendor-hybrid)
+* [Vendor Manifest](https://jakedup.github.io/Syncler-Packages/@config/?id=vendor)
 
 ## Syncler v1:
 
-* [Express Package — Hybrid](https://jakedup.github.io/Syncler-Packages/@config/?id=express-hybrid)
+* [Express Package](https://jakedup.github.io/Syncler-Packages/@config/?id=express)
 
 ---
 

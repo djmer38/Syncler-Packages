@@ -54,10 +54,8 @@ const App = Vue.createApp({
   },
   computed: {
     server() {
-      const version = urlParams.get('v') == 1 ? 1 : 2;
       return {
-        version: version,
-        url: version == 2 ? 'https://jakedup.com/syncler' : 'https://syncler-providers.herokuapp.com/syncler'
+        url: 'https://jakedup.com/syncler'
       };
     },
     expressParams() {
@@ -66,11 +64,7 @@ const App = Vue.createApp({
         params['orion-api-key'] = this.orion.apiKey;
       }
       if (this.orion.commonProviders === 'off') {
-        if (this.server.version == 2) {
-          params['common-providers'] = 'off';
-        } else {
-          params['exclude-orion'] = true;
-        }
+        params['common-providers'] = 'off';
       }
       if (this.jackett.baseUrl && this.jackett.apiKey) {
         params['jackett-base-url'] = this.jackett.baseUrl.replace(/[\/\s]+$/, '');
@@ -82,10 +76,10 @@ const App = Vue.createApp({
       return params;
     },
     vendorUrl() {
-      return `${this.server.url}/${this.server.version == 2 ? 'vendor' : 'vendor-hybrid.json'}${this.paramsToQuery(this.expressParams)}`;
+      return `${this.server.url}/vendor${this.paramsToQuery(this.expressParams)}`;
     },
     expressUrl() {
-      return `${this.server.url}/${this.server.version == 2 ? 'express' : 'express-hybrid.json'}${this.paramsToQuery(this.expressParams)}`;
+      return `${this.server.url}/express${this.paramsToQuery(this.expressParams)}`;
     },
     justwatchParams() {
       const params = {};
@@ -98,7 +92,7 @@ const App = Vue.createApp({
       return params;
     },
     justwatchUrl() {
-      return `${this.server.url}/${this.server.version == 2 ? 'justwatch.js' : 'kosmos-justwatch.js'}${this.paramsToQuery(this.justwatchParams)}`;
+      return `${this.server.url}/justwatch.js${this.paramsToQuery(this.justwatchParams)}`;
     }
   },
   watch: {
@@ -139,7 +133,6 @@ const App = Vue.createApp({
     });
     if (urlParams.size) {
       const newParams = new URLSearchParams();
-      urlParams.has('v') && newParams.set('v', urlParams.get('v'));
       urlParams.has('id') && newParams.set('id', urlParams.get('id'));
       const newUrl = window.location.pathname + '?' + newParams.toString();
       history.replaceState(null, null, newUrl);
